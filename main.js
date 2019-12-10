@@ -1,21 +1,19 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, shell } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      nodeIntegration: true
-    }
+    webPreferences: { nodeIntegration: true },
   })
 
   // and load the index.html of the app.
-  win.loadFile('index.html')
+  win.loadFile('src/index.html')
 
   // Open the DevTools.
   win.webContents.openDevTools()
@@ -28,20 +26,27 @@ function createWindow () {
     win = null
   })
 
-  var menu = Menu.buildFromTemplate([
-      {
-        label: 'Menu',
-        submenu: [
-          {label: 'Adjust Notification Value'},
-          {label: 'CoinMarketCap'},
-          {
-            label: 'Exit',
-            click() {
-              app.quit()
-            }
-          }
-        ]
-      }
+  const menu = Menu.buildFromTemplate([
+    {
+      label: 'Menu',
+      submenu: [
+        { label: 'Adjust Notification Value' },
+        {
+          label: 'CoinMarketCap',
+          click() {
+            shell.openExternal('https://github.com/drtexx/volux')
+          },
+        },
+        { type: 'separator' },
+        {
+          label: 'Exit',
+          click() {
+            app.quit()
+          },
+        },
+      ],
+    },
+    { label: 'Info' },
   ])
 
   Menu.setApplicationMenu(menu)
