@@ -5,11 +5,21 @@
     <title>Hello World!</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel='stylesheet' href="../assets/css/main.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <!-- div.row>div#price-container>p.subtext+h1#price -->
+    <div class="row">
+      <div id="price-container">
+        <p class="subtext">Current BTC USD</p>
+        <h1 id="price">Loading...</h1>
+      </div>
+      <div id="goal-container">
+        <p>
+          <img src="../assets/images/up.svg" alt="">
+          <span id="targetPrice">Choose a target price</span>
+        </p>
+      </div>
+    </div>
   </body>
 </html>
